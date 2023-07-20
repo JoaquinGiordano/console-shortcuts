@@ -38,10 +38,25 @@ void addCommand(char *command, char *dir)
     FILE *f = fopen(SAVE_PATH, "rb+");
     struct saveFileStruct data;
     fseek(f, 0, SEEK_END);
-    strncpy(data.command, command, MAX_COMMAND_LENGHT);
-    strncpy(data.dir, dir, MAX_DIR_LENGHT);
+    data.command[0] = '\0';
+    data.dir[0] = '\0';
+    strncat(data.command, command, MAX_COMMAND_LENGHT - 1);
+    strncat(data.dir, dir, MAX_COMMAND_LENGHT - 1);
     fwrite(&data, sizeof(data), 1, f);
     fclose(f);
+}
+
+void showStorage(struct saveFileStruct *storage, long n)
+{
+    int i;
+
+    for (i = 0; i < n; i++)
+    {
+        printf("-\n");
+        printf("Command: %s\n", storage[i].command);
+        printf("Path: %s\n", storage[i].dir);
+    }
+    printf("-\n");
 }
 
 void loadStorage(FILE *f, struct saveFileStruct *storage)
@@ -62,6 +77,8 @@ int getStorage(struct saveFileStruct *storage)
     long saveFileSize = getFileSize(saveFile);
     long commandsQuantity = saveFileSize / sizeof(struct saveFileStruct);
 
+    int i;
+
     if (commandsQuantity > DEFAULT_STORAGE_SIZE)
     {
         DEBUG_PRINT("Resizing Storage... \n");
@@ -69,6 +86,7 @@ int getStorage(struct saveFileStruct *storage)
     }
 
     loadStorage(saveFile, storage);
+
     fclose(saveFile);
     return commandsQuantity;
 }

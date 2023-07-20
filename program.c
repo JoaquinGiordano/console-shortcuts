@@ -17,6 +17,10 @@ int main(int argc, char *argv[])
         addCommand(strdup(argv[2]), strdup(argv[3]));
         commandsQuantity++;
     }
+    else if (strcmp(command, "list") == 0 || strcmp(command, "ls") == 0)
+    {
+        showStorage(storage, commandsQuantity);
+    }
     else
         printf("You are executing something");
 
