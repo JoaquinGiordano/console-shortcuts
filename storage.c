@@ -1,22 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
-#include "constants.h"
-#endif
-
-struct saveFileStruct
-{
-    char command[MAX_COMMAND_LENGHT];
-    char dir[MAX_DIR_LENGHT];
-};
-
-FILE *createSaveFile();
-long getFileSize(FILE *f);
-void addCommand(char *command, char *dir);
-void loadStorage(FILE *f, struct saveFileStruct *storage);
-int getStorage(struct saveFileStruct *storage);
+#include "headers/storage.h"
 
 FILE *createSaveFile()
 {

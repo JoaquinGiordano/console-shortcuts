@@ -1,20 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
-#include "constants.h"
-#endif
-
-#ifndef STORAGE_H
-#define STORAGE_H
-#include "storage.h"
-#endif
-
-#ifndef COMMANDS_H
-#define COMMANDS_H
-#include "commands.h"
-#endif
+#include "headers/program.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,7 +8,9 @@ int main(int argc, char *argv[])
     char *command = argv[1];
 
     if (strcmp(command, "help") == 0)
-        printf("You asked for help");
+    {
+        // TODO
+    }
     else if (strcmp(command, "add") == 0)
     {
         addCommand(strdup(argv[2]), strdup(argv[3]));
@@ -36,7 +22,7 @@ int main(int argc, char *argv[])
     }
     else if (strcmp(command, "remove") == 0 || strcmp(command, "rm") == 0)
     {
-        showStorage(storage, commandsQuantity);
+        // TODO
     }
     else
     {

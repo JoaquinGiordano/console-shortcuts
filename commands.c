@@ -1,16 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
-#include "constants.h"
-#endif
-
-#ifndef STORAGE_H
-#define STORAGE_H
-#include "storage.h"
-#endif
+#include "headers/commands.h"
 
 void addCommand(char *command, char *dir)
 {
@@ -24,6 +13,18 @@ void addCommand(char *command, char *dir)
     strncat(data.dir, dir, MAX_COMMAND_LENGHT - 1);
     fwrite(&data, sizeof(data), 1, f);
     fclose(f);
+}
+
+void removeCommand(struct saveFileStruct *storage, int commandsQuantity, char *command)
+{
+    int i = 0;
+    for (i = 0; i < commandsQuantity; i++)
+    {
+        if (strcmp(storage[i].command, command) == 0)
+        {
+            // TODO
+        }
+    }
 }
 
 void executeCommand(struct saveFileStruct *storage, int commandsQuantity, char *command)
