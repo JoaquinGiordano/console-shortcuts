@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
 #include "constants.h"
+#endif
 
 struct saveFileStruct
 {
@@ -32,31 +35,15 @@ long getFileSize(FILE *f)
     return size;
 }
 
-void addCommand(char *command, char *dir)
-{
-    DEBUG_PRINT("Adding Command...\n");
-    FILE *f = fopen(SAVE_PATH, "rb+");
-    struct saveFileStruct data;
-    fseek(f, 0, SEEK_END);
-    data.command[0] = '\0';
-    data.dir[0] = '\0';
-    strncat(data.command, command, MAX_COMMAND_LENGHT - 1);
-    strncat(data.dir, dir, MAX_COMMAND_LENGHT - 1);
-    fwrite(&data, sizeof(data), 1, f);
-    fclose(f);
-}
-
 void showStorage(struct saveFileStruct *storage, long n)
 {
     int i;
-
+    printf("\n");
     for (i = 0; i < n; i++)
     {
-        printf("-\n");
-        printf("Command: %s\n", storage[i].command);
-        printf("Path: %s\n", storage[i].dir);
+        printf("\033[34mCommand:\033[0m %s\n", storage[i].command);
+        printf("\033[36mPath:\033[0m %s\n\n", storage[i].dir);
     }
-    printf("-\n");
 }
 
 void loadStorage(FILE *f, struct saveFileStruct *storage)

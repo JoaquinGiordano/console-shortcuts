@@ -1,7 +1,20 @@
 #include <stdio.h>
 #include <string.h>
+
+#ifndef CONSTANTS_H
+#define CONSTANTS_H
 #include "constants.h"
+#endif
+
+#ifndef STORAGE_H
+#define STORAGE_H
 #include "storage.h"
+#endif
+
+#ifndef COMMANDS_H
+#define COMMANDS_H
+#include "commands.h"
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -21,10 +34,14 @@ int main(int argc, char *argv[])
     {
         showStorage(storage, commandsQuantity);
     }
+    else if (strcmp(command, "remove") == 0 || strcmp(command, "rm") == 0)
+    {
+        showStorage(storage, commandsQuantity);
+    }
     else
-        printf("You are executing something");
-
-    printf("Commands: %i\n", commandsQuantity);
+    {
+        executeCommand(storage, commandsQuantity, argv[1]);
+    }
 
     return 0;
 }
