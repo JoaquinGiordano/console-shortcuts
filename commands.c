@@ -13,24 +13,42 @@ void addCommand(char *command, char *dir)
     strncat(data.dir, dir, MAX_COMMAND_LENGHT - 1);
     fwrite(&data, sizeof(data), 1, f);
     fclose(f);
+    printf("\033[32mCommand Added Successfully\033[0m");
 }
 
-void removeCommand(struct saveFileStruct *storage, int commandsQuantity, char *command)
+void removeCommand(struct saveFileStruct *storage, long *commandsQuantity, char *command)
 {
     int i = 0;
-    for (i = 0; i < commandsQuantity; i++)
+    for (i = 0; i < *commandsQuantity; i++)
     {
         if (strcmp(storage[i].command, command) == 0)
         {
-            // TODO
+
+            while (i < *commandsQuantity - 1)
+            {
+                storage[i] = storage[i + 1];
+                i++;
+            }
+
+            (*commandsQuantity)--;
+            free(&storage[i]);
+
+            // showStorage(storage, *commandsQuantity);
+
+            // TODO: WRITE IN FILE
+
+            printf("\033[32mCommand Removed Successfully\033[0m");
+
+            return;
         }
     }
+    printf("\033[31mThat command does not exist\033[0m");
 }
 
-void executeCommand(struct saveFileStruct *storage, int commandsQuantity, char *command)
+void executeCommand(struct saveFileStruct *storage, long *commandsQuantity, char *command)
 {
     int i;
-    for (i = 0; i < commandsQuantity; i++)
+    for (i = 0; i < *commandsQuantity; i++)
     {
         if (strcmp(command, storage[i].command) == 0)
         {
@@ -38,7 +56,7 @@ void executeCommand(struct saveFileStruct *storage, int commandsQuantity, char *
             strcpy(finalCommand, "start ");
             strcat(finalCommand, storage[i].dir);
             system(finalCommand);
-            printf("Excuting Command...\n");
+            printf("\033[32mExcuting Command...\033[0m");
             break;
         }
     }

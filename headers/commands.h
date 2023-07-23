@@ -12,6 +12,7 @@
 #include "storage.h"
 
 void addCommand(char *command, char *dir);
-void executeCommand(struct saveFileStruct *storage, int commandsQuantity, char *command);
+void removeCommand(struct saveFileStruct *storage, long *commandsQuantity, char *command);
+void executeCommand(struct saveFileStruct *storage, long *commandsQuantity, char *command);
 
 #endif

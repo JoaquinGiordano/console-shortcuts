@@ -22,11 +22,11 @@ int main(int argc, char *argv[])
     }
     else if (strcmp(command, "remove") == 0 || strcmp(command, "rm") == 0)
     {
-        // TODO
+        removeCommand(storage, &commandsQuantity, strdup(argv[2]));
     }
     else
     {
-        executeCommand(storage, commandsQuantity, argv[1]);
+        executeCommand(storage, &commandsQuantity, argv[1]);
     }
 
     return 0;
