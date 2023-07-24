@@ -2,3 +2,4 @@
 *.sf
 
 .vscode/
+obj/

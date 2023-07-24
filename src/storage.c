@@ -1,4 +1,4 @@
-#include "headers/storage.h"
+#include "../include/storage.h"
 
 FILE *createSaveFile()
 {
@@ -45,8 +45,6 @@ int getStorage(struct saveFileStruct *storage)
 
     long saveFileSize = getFileSize(saveFile);
     long commandsQuantity = saveFileSize / sizeof(struct saveFileStruct);
-
-    int i;
 
     if (commandsQuantity > DEFAULT_STORAGE_SIZE)
     {

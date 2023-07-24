@@ -1,5 +1,5 @@
 
-#include "headers/commands.h"
+#include "../include/commands.h"
 
 void addCommand(char *command, char *dir)
 {
