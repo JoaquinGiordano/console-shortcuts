@@ -6,6 +6,9 @@
 
 #include "macros.h"
 #include "constants.h"
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 struct saveFileStruct
 {

@@ -2,6 +2,7 @@
 
 FILE *createSaveFile()
 {
+    mkdir(SAVE_FOLDER);
     DEBUG_PRINT("Creating savefile...\n");
     FILE *saveFile = fopen(SAVE_PATH, "wb+");
     return saveFile;

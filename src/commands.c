@@ -1,4 +1,3 @@
-
 #include "../include/commands.h"
 
 void addCommand(char *command, char *dir)
@@ -32,13 +31,11 @@ void removeCommand(struct saveFileStruct *storage, long *commandsQuantity, char 
 
             (*commandsQuantity)--;
             free(&storage[i]);
-
-            // showStorage(storage, *commandsQuantity);
-
-            // TODO: WRITE IN FILE
-
+            FILE *f = fopen(SAVE_PATH, "wb");
+            fseek(f, 0, SEEK_SET);
+            fwrite(storage, sizeof(struct saveFileStruct), *commandsQuantity, f);
+            fclose(f);
             printf("\033[32mCommand Removed Successfully\033[0m");
-
             return;
         }
     }
