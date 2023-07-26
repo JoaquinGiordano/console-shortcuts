@@ -7,6 +7,7 @@
 #include "constants.h"
 #include "storage.h"
 #include "commands.h"
+#include "help.h"
 
 int main(int argc, char *argv[]);
 

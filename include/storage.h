@@ -17,6 +17,7 @@ struct saveFileStruct
 };
 
 FILE *createSaveFile();
+void deleteSaveFile();
 long getFileSize(FILE *f);
 void showStorage(struct saveFileStruct *storage, long n);
 void loadStorage(FILE *f, struct saveFileStruct *storage);

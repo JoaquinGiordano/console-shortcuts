@@ -8,6 +8,12 @@ FILE *createSaveFile()
     return saveFile;
 }
 
+void deleteSaveFile()
+{
+    remove(SAVE_PATH);
+    printf("\033[32mAll commands have been removed.\033[0m");
+}
+
 long getFileSize(FILE *f)
 {
     long actualPos = ftell(f);
@@ -20,12 +26,18 @@ long getFileSize(FILE *f)
 
 void showStorage(struct saveFileStruct *storage, long n)
 {
-    int i;
+    if (n == 0)
+    {
+        printf("\033[31mThere are no commands.\033[0m");
+        return;
+    }
+
     printf("\n");
+    int i;
     for (i = 0; i < n; i++)
     {
-        printf("\033[34mCommand:\033[0m %s\n", storage[i].command);
-        printf("\033[36mPath:\033[0m %s\n\n", storage[i].dir);
+        printf("\033[34mCommand:\033[0m %s\t \033[36mPath:\033[0m %s\n", storage[i].command, storage[i].dir);
+        // printf("\033[36mPath:\033[0m %s\n", storage[i].dir);
     }
 }
 

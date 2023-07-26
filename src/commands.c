@@ -22,13 +22,11 @@ void removeCommand(struct saveFileStruct *storage, long *commandsQuantity, char 
     {
         if (strcmp(storage[i].command, command) == 0)
         {
-
             while (i < *commandsQuantity - 1)
             {
                 storage[i] = storage[i + 1];
                 i++;
             }
-
             (*commandsQuantity)--;
             free(&storage[i]);
             FILE *f = fopen(SAVE_PATH, "wb");
@@ -49,12 +47,15 @@ void executeCommand(struct saveFileStruct *storage, long *commandsQuantity, char
     {
         if (strcmp(command, storage[i].command) == 0)
         {
-            char finalCommand[strlen(storage[i].command) + 7];
-            strcpy(finalCommand, "start ");
+            char finalCommand[(long int)strlen(storage[i].dir) + 12];
+
+            strcpy(finalCommand, "start \"\" \"");
             strcat(finalCommand, storage[i].dir);
+            strcat(finalCommand, "\"");
             system(finalCommand);
-            printf("\033[32mExcuting Command...\033[0m");
-            break;
+            printf("\033[32mExcuting \"%s\"...\033[0m", command);
+            return;
         }
     }
+    printf("\033[31mCommand \"%s\" not found\033[0m", command);
 }
