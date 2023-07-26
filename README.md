@@ -5,11 +5,11 @@
 ### Functions:
 
 ```sh
-cs add command path Adds a command
-cs rm command path Removes a command
-cs clear Removes all the commands
-cs ls Lists all the commands
-cs help Show this message
+cs add command path     #Adds a command
+cs rm command path      #Removes a command
+cs clear                #Removes all the commands
+cs ls                   #Lists all the commands
+cs help                 #Show this message
 ```
 
 ### Examples:
